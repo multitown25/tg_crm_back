@@ -77,7 +77,7 @@ app.post('/create-order', async (req, res) => {
     // add order to db
 
     try {
-        console.log('create-order')
+        console.log(queryId);
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
             id: queryId,
