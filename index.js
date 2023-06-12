@@ -88,7 +88,7 @@ app.post('/create-order', async (req, res) => {
         });
         return res.status(200).json({});
     } catch (err) {
-        return res.status(500).json({});
+        return res.status(500).json({err});
     }
 })
 
