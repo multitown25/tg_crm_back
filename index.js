@@ -1,4 +1,5 @@
 const Category = require('./Category');
+const Order = require('./Order');
 const TelegramBot = require("node-telegram-bot-api");
 const express = require('express');
 const cors = require('cors');
@@ -39,6 +40,11 @@ const getCategories = async () => {
     return categories;
 }
 
+const getOrders = async () => {
+    const orders = await Order.find();
+    return orders;
+}
+
 // const authentication = async () => {
 //     const baseURL = 'http://5.101.51.105'
 //     const categories = await fetch(new URL('/categories', baseURL), {
@@ -68,14 +74,13 @@ bot.on('message', async (msg) => {
     if(msg?.web_app_data?.data) {
         try {
             const data = JSON.parse(msg?.web_app_data?.data)
-            console.log(data)
+            let items = data?.addedItems.map(item => item.title)
+            //console.log(data)
+            console.log(orders);
             await bot.sendMessage(chatId, `Заказ номер ! создан!`)
-            await bot.sendMessage(chatId, 'Ваша страна: ' + data?.addedItems);
-            await bot.sendMessage(chatId, 'Ваша улица: ' + data?.totalPrice);
+            await bot.sendMessage(chatId, 'Выбранные позиции: ' + data?.items);
+            await bot.sendMessage(chatId, 'Общая сумма: ' + data?.totalPrice);
 
-            setTimeout(async () => {
-                await bot.sendMessage(chatId, 'Всю информацию вы получите в этом чате');
-            }, 3000)
         } catch (e) {
             console.log(e);
         }
