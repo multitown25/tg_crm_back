@@ -75,7 +75,7 @@ app.post('/create-order', async (req, res) => {
     const {queryId, addedItems, totalPrice} = req.body;
 
     // add order to db
-
+    console.log('/webdata')
     try {
         console.log(queryId);
         await bot.answerWebAppQuery(queryId, {
