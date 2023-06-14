@@ -59,7 +59,7 @@ bot.on('message', async (msg) => {
         //await authentication();
         await bot.sendMessage(chatId, 'Новый заказ', {
             reply_markup: {
-                inline_keyboard: [
+                keyboard: [
                     [{text: 'Добавить заказ', web_app: {url: webAppUrl}}]
                 ]
             }
@@ -69,7 +69,7 @@ bot.on('message', async (msg) => {
         try {
             const data = JSON.parse(msg?.web_app_data?.data)
             console.log(data)
-            await bot.sendMessage(chatId, 'Спасибо за обратную связь!')
+            await bot.sendMessage(chatId, `Заказ номер ! создан!`)
             await bot.sendMessage(chatId, 'Ваша страна: ' + data?.addedItems);
             await bot.sendMessage(chatId, 'Ваша улица: ' + data?.totalPrice);
 
