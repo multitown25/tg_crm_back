@@ -75,6 +75,7 @@ bot.on('message', async (msg) => {
         try {
             const data = JSON.parse(msg?.web_app_data?.data)
             let items = data?.addedItems.map(item => item.title)
+            const orders = await getOrders();
             //console.log(data)
             console.log(orders);
             await bot.sendMessage(chatId, `Заказ номер ! создан!`)
