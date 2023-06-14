@@ -99,8 +99,7 @@ app.post('/create-order', async (req, res) => {
             title: 'Добавление нового заказа',
             input_message_content: {
                 message_text: `Заказ номер 54 добавлен. Общая сумма заказа: ${totalPrice}`
-            },
-            cache_time: 1000
+            }
         });
         return res.status(200).json({});
     } catch (err) {
