@@ -42,8 +42,7 @@ const getCategories = async () => {
 
 const getOrders = async () => {
     const orders = await Order.find();
-    const orderss = ['Капучино', 'Вода']
-    return orderss;
+    return orders;
 }
 
 // const authentication = async () => {
@@ -77,9 +76,10 @@ bot.on('message', async (msg) => {
             const data = JSON.parse(msg?.web_app_data?.data)
             let items = data?.addedItems.map(item => item.title)
             const orders = await getOrders();
+
             //console.log(data)
             console.log(orders);
-            await bot.sendMessage(chatId, `Заказ номер ${orders.length} создан!`)
+            await bot.sendMessage(chatId, `Заказ номер ${orders[orders.length - 1].order + 1} создан!`)
             await bot.sendMessage(chatId, 'Выбранные позиции: ' + items);
             await bot.sendMessage(chatId, 'Общая сумма: ' + data?.totalPrice + 'Р');
 
