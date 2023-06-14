@@ -59,7 +59,7 @@ bot.on('message', async (msg) => {
         //await authentication();
         await bot.sendMessage(chatId, 'Новый заказ', {
             reply_markup: {
-                keyboard: [
+                inline_keyboard: [
                     [{text: 'Добавить заказ', web_app: {url: webAppUrl}}]
                 ]
             }
